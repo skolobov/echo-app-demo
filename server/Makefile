@@ -7,7 +7,6 @@ build:
 	docker build -t ${IMAGE}:${VERSION} .
 
 push:
-	echo "${DOCKER_HUB_PASSWORD}" | docker login -u ${DOCKER_HUB_USERNAME} --password-stdin
 	docker push ${IMAGE}:${VERSION}
 
 clean:
