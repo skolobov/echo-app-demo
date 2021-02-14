@@ -1,0 +1,26 @@
+name: Echo Client Docker Image
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - client/**
+  pull_request:
+    branches:
+      - master
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the Docker image
+      shell: bash
+      run: |
+        echo "${{ secrets.DOCKER_HUB_PASSWORD }}" | \
+          docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} --password-stdin
+        cd client && make
