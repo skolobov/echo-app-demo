@@ -1,0 +1,18 @@
+{% extends "bootstrap/base.html" %}
+{% block title %}Echo App Demo{% endblock %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block content %}
+<div class="container">
+  <h1>Echo App Demo</h1>
+  <form class="form form-horizontal" method="post" role="form">
+    {{ form.csrf_token }}
+    {{ wtf.form_errors(form, hiddens="only") }}
+
+    {{ wtf.form_field(form.method) }}
+    {{ wtf.form_field(form.body) }}
+    {{ wtf.form_field(form.submit) }}
+    <hr>
+    {{ wtf.form_field(form.response) }}
+  </form>
+</div>
+{% endblock %}
