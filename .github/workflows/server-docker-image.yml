@@ -19,6 +19,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
+      shell: bash
       env:
         DOCKER_HUB_USERNAME: ${{ DOCKER_HUB_USERNAME }}
         DOCKER_HUB_PASSWORD: ${{ DOCKER_HUB_PASSWORD }}
