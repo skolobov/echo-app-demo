@@ -8,6 +8,7 @@ from flask_bootstrap import Bootstrap
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.urandom(12).hex()
 Bootstrap(app)
+backend_url = os.environ['BACKEND_URL'] || "http://localhost:1323"
 
 class RequestForm(FlaskForm):
     method = SelectField("Method", choices=["GET", "OPTIONS", "HEAD", "POST", "PUT", "PATCH", "DELETE"])
@@ -20,7 +21,7 @@ def index():
     form = RequestForm(request.form)
 
     if request.method == 'POST' and form.validate():
-        response = requests.request(form.method.data,"http://localhost:1323",data=form.body.data)
+        response = requests.request(form.method.data, backend_url, data=form.body.data)
         form.response.data = response.content.decode('UTF-8')
         redirect('index')
 
