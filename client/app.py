@@ -8,7 +8,7 @@ from flask_bootstrap import Bootstrap
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.urandom(12).hex()
 Bootstrap(app)
-backend_url = os.environ['BACKEND_URL'] || "http://localhost:1323"
+backend_url = os.getenv('BACKEND_URL','http://localhost:1323')
 
 class RequestForm(FlaskForm):
     method = SelectField("Method", choices=["GET", "OPTIONS", "HEAD", "POST", "PUT", "PATCH", "DELETE"])
