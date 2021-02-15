@@ -12,5 +12,7 @@ RUN pip3 install -r requirements.txt
 
 EXPOSE ${PORT}
 ENV FLASK_APP="app"
+ENV HOST=${HOST}
+ENV PORT=${PORT}
 
 CMD ["flask", "run", "--host", "${HOST}", "--port", "${PORT}" ]
