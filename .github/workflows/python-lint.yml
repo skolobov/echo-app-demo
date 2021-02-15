@@ -1,11 +1,6 @@
 name: Python Lint
 
-on:
-  push:
-    branches:
-      - master
-    paths:
-      - client/**
+on: [push]
 
 jobs:
 
