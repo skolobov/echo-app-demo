@@ -1,5 +1,5 @@
 IMAGE=skolobov/echo-client
-VERSION=0.1.4
+VERSION=0.1.5
 
 all: build push
 
@@ -10,4 +10,4 @@ push:
 	docker push ${IMAGE}:${VERSION}
 
 clean:
-	rm server
+	rm -rf __pycache__
