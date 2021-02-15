@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "echo.server" . }}
+  labels:
+    {{- include "echo.labels" . | nindent 4 }}
+    app: {{ include "echo.server" . }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "echo.selectorLabels" . | nindent 6 }}
+      app: {{ include "echo.server" . }}
+  template:
+    metadata:
+      labels:
+        {{- include "echo.selectorLabels" . | nindent 8 }}
+        app: {{ include "echo.server" . }}
+    spec:
+      containers:
+        - name: server
+          image: "{{ .Values.server.image.repository }}:{{ .Values.server.image.tag | default .Chart.AppVersion }}"
+          ports:
+          - containerPort: {{ .Values.server.port }}
+          env:
+          - name: SERVER_ADDRESS
+            value: ":{{ .Values.server.port }}"

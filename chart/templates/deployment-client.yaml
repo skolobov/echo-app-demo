@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "echo.client" . }}
+  labels:
+    {{- include "echo.labels" . | nindent 4 }}
+    app: {{ include "echo.client" . }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "echo.selectorLabels" . | nindent 6 }}
+      app: {{ include "echo.client" . }}
+  template:
+    metadata:
+      labels:
+        {{- include "echo.selectorLabels" . | nindent 8 }}
+        app: {{ include "echo.client" . }}
+    spec:
+      containers:
+        - name: client
+          image: "{{ .Values.client.image.repository }}:{{ .Values.client.image.tag | default .Chart.AppVersion }}"
+          ports:
+          - containerPort: {{ .Values.client.port }}
+          env:
+          - name: BACKEND_URL
+            value: "http://echo-server:{{ .Values.server.port  }}"

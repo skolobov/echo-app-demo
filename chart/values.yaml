@@ -1,0 +1,15 @@
+replicaCount: 1
+
+server:
+  image:
+    repository: skolobov/echo-server
+    tag: 0.1.2
+  port: 1323
+
+client:
+  image:
+    repository: skolobov/echo-client
+    tag: 0.1.5
+  port: 5000
+  nodePort: 31500
+
