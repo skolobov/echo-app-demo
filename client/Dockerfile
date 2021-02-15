@@ -1,7 +1,6 @@
 FROM python:3.9-alpine
 
-ARG HOST="0.0.0.0"
-ARG PORT="5000"
+ARG FLASK_PORT
 
 RUN mkdir /app
 WORKDIR /app
@@ -12,7 +11,6 @@ RUN pip3 install -r requirements.txt
 
 EXPOSE ${PORT}
 ENV FLASK_APP="app"
-ENV HOST=${HOST}
-ENV PORT=${PORT}
+ENV FLASK_PORT=${FLASK_PORT:-5000}
 
-CMD ["flask", "run", "--host", "${HOST}", "--port", "${PORT}" ]
+CMD ["flask", "run", "--host", "0.0.0.0", "--port", "$FLASK_PORT" ]

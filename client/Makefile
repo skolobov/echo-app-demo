@@ -1,5 +1,5 @@
 IMAGE=skolobov/echo-client
-VERSION=0.1.2
+VERSION=0.1.3
 
 all: build push
 
