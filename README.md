@@ -26,16 +26,8 @@ helm -n echo install --create-namespace  echo ./chart
 
 ## Usage
 
-Open frontend service in a web browser under macOS:
+Open frontend service in a web browser:
 
 ```
-open http://$(minikube ip):31500
-```
-
-Alternatively, run the following commands and open the resulting URL in a web browser:
-
-```
-export NODE_PORT=$(kubectl get --namespace echo -o jsonpath="{.spec.ports[0].nodePort}" services echo-client)
-export NODE_IP=$(kubectl get nodes --namespace echo -o jsonpath="{.items[0].status.addresses[0].address}")
-echo http://$NODE_IP:$NODE_PORT
+minikube service -n echo echo-client
 ```
