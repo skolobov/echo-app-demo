@@ -1,5 +1,5 @@
 Flask==1.1.2
 Flask-Bootstrap==3.3.7.1
 Flask-WTF==0.14.3
-requests==2.25.1
+requests==2.31.0
 WTForms==2.3.3
